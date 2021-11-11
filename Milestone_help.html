@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta name="Author" content="Michael G. Slack">
+    <title>Milestone Help</title>
+    <style>
+      #image {width:130px; height:130px; float:left; padding:0px 5px 5px 0px;}
+      #center, #footertext {text-align:center;}
+      #bold {font-weight:bold;}
+      #linone {list-style-type:none;}
+      #footertext {font-size:smaller;}
+    </style>
+  </head>
+  <body>
+    <div id="center"><h1>Milestone (Mille Bornes) - Help</h1></div>
+    <div>
+      Quick Links: <a href="#cards">Cards</a> | <a href="#score">Score</a> | <a href="#controls">Controls</a> | <a href="#options">Options</a>
+    </div>
+    <div>
+      <img id="image" alt="Milestone Game Image" src="Milestone_help.gif">
+      <p>Milestone is a card game where the user plays the computer to be the first to reach 5000 points (or a
+         value set via options). The game is played in a series of rounds with a round ending when the computer
+         or player reaches 1000 miles or all cards have been played/discarded and there are no more cards left to
+         deal out. The game was originally released in France as Mille Bornes (a thousand milestones).</p>
+      <p>The round starts with each player being dealt seven cards. A random pick will select either the computer
+         or the player to start the round. That player will then start playing by either playing a card or
+         discarding a card. After playing, another card is dealt to the player. Then the other player will
+         then do the same. These turns continue until 1000 miles is reach by one of the players or there are no
+         more cards left to play/discard.</p>
+      <p>The game screen is made up of the players and computers playing areas, a message line and a area with the
+         current rounds mileage. Also, an area with the players cards is displayed. Each players playing area has
+         six spots. There is a speed pile, a battle pile and four places for safety cards. The majority of the
+         game is played by placing cards in either the players or computers battle and speed piles.</p>
+      <p>This version of Milestone was based on a game originally written by David Addison on the Amiga using
+         ABasic &copy;1986. Subsequently, it was rewritten for DOS using Turbo Pascal in 1989 and then rewritten
+         for OS/2 using Speed Pascal/2 in 1995-1996, finally to C# in 2014.</p>
+    </div>
+    <div id="bold"><a id="cards">Cards</a></div>
+    <div>
+      <p>There are four types of cards that can be played.</>
+      <ul>
+        <li><a href="#mileage">Mileage cards</a>
+        <li><a href="#hazard">Hazard cards</a>
+        <li><a href="#remedy">Remedy cards</a>
+        <li><a href="#safety">Safety cards</a>
+      </ul>
+      <p>In addition, there is one other card that does not fit within any of the four types. This is the roll
+         card. This card must be played before any mileage cards can be played. It is not necessary to play this
+         card before playing any of the other types of cards.</p>
+      <p>All of these cards are necessary to win the round and ultimately, the game.</p>
+    </div>
+    <div id="bold"><a id="mileage">Mileage Cards</a></div>
+    <div>
+      <p>There are five mileage cards available in Milestone. These cards represent mileage totals of 25, 50, 75,
+         100 and 200 miles. The higher the mileage, the better the score.</p>
+      <p>If a player has a speed limit card played against them, they may only play the 25 and 50 mile cards.</p>
+      <p>The player can only play mileage cards, combined with the mileage already played in the round, that does
+         not exceed 1000 miles. Playing to 1000 miles ends the round.</p>
+    </div>
+    <div id="bold"><a id="hazard">Hazard Cards</a></div>
+    <div>
+      <p>There are five hazard cards that can be played. These include the Speed Limit (played on the opponents
+         speed pile), Stop, Flat Tire, Accident and Out of Gas cards (played on the opponents battle pile). Each
+         one of these cards has a equivalent remedy card or a safety card that must be played before any more
+         mileage cards (with the exception of the Speed Limit card).</p>
+      <p>The hazard cards cannot be played against an opponent unless they have a Roll card played. In addition,
+         if the opponent has the appropriate safety card, the hazard card cannot be played.</p>
+    </div>
+    <div id="bold"><a id="remedy">Remedy Cards</a></div>
+    <div>
+      <p>Milestone has four remedy type cards that can be played. Each remedy card is played against a specific
+         hazard. The remedy cards include End Speed Limit, Spare Tire, Repairs and Gas. In addition, the Stop
+         hazard is cancelled by playing another Roll card. After playing a remedy card, the player must then play
+         a roll card to continue playing mileage cards. The exception is the End Speed Limit card. This card is
+         played on the Speed pile and not on the battle pile.</p>
+    </div>
+    <div id="bold"><a id="safety">Safety Cards</a></div>
+    <div>
+      <p>Safety cards are played on one of the four safety places of the player playing them. They prevent a
+         player from getting stopped by the corresponding hazard card for the balance of the current round.  
+         As soon as a safety is played, it prevents any further hazard of that type and cancels any hazard
+         in place.</p>
+      <p>There are four safety cards. There are only four of these cards in the deck (one of each).</p>
+      <ul>
+        <li>Right of Way Card - When this card is played in the players safety area, the opponent cannot play a
+            Stop card on the battle pile of the player who played this card. In addition, a speed limit card
+            cannot be played on the speed pile of the player who played the Right of Way card. This card will also
+            cancel any stop or speed limit cards already played and sets the No Speed Limit and Roll cards
+            automatically. It is probably the most powerful safety card available.
+        <li>Extra Tank Card - When this card is played, no more Out of Gas cards can be played against the player
+            who played it. This card also cancels any Out of Gas cards currently played against the player who
+            played it.
+        <li>Permanent Tire Card - When this card is played, no more Flat Tire cards can be played against the
+            player who played this card. In addition, any Flat Tires are cancelled if played against the player
+            before this card is played.
+        <li>Driving Ace Card - When this card is played, no more Accident cards can be played against the player
+            who played this card. Also, any accident card played against the player who played this card is cancelled.
+      </ul>
+    </div>
+    <div id="bold"><a id="score">Score</a></div>
+    <div>
+      <p>At the round end, each player scores 1 point for every mile driven. There are several other ways to make
+         points.</p>
+      <ul>
+        <li id="linone"><div id="bold">Other points:</div>
+        <li>100 points - Each safety card played.
+        <li>300 points - Each <a href="#coupfourre">coup fourre</a>.
+        <li id="linone"><div id="bold">Bonus points:</div>
+        <li>400 points - Making 1000 mile points.
+        <li>500 points - Mileage shut out (opponent didn't play any mileage cards).
+      </ul>
+      <p>The maximum score that can be had for any round is:</p>
+      <ul>
+        <li>1000 - points for mileage.
+        <li>&nbsp;&nbsp;400 - points for making 1000 miles.
+        <li>&nbsp;&nbsp;500 - points for preventing your opponent from playing any mileage.
+        <li>1200 - points for 4 coup fourres.
+        <li>&nbsp;&nbsp;400 - points for playing the 4 safety cards.
+        <li>------
+        <li>3500 - total points.
+      </ul>
+      <p>The game is played in a series of rounds until 5000 or more points is made. If both the
+         computer and player get above the game winning point total and the score is tied, the
+         player wins the game.</p>
+    </div>
+    <div id="bold"><a id="coupfourre">Coup Fourre</a></div>
+    <div>
+      <p>A Coup Fourre is when a safety card is played by a player who has the corresponding hazard card played
+         against them. This special play not only cancels the hazard, but scores more points.</p>
+    </div>
+    <div>
+      <p>For more information on Milestone and its rules, see the
+         <a href="http://en.wikipedia.org/wiki/Mille_Bornes">Milestone</a> entry on Wikipedia.</p>
+    </div>
+    <div id="bold"><a id="controls">Controls</a></div>
+    <div>
+      <p>The game controls should be relatively easy to figure out. The player can select
+         the 'New Game' or if a game is already started, the 'New Round', 'Help', 'Options'
+         or 'Exit' buttons at any time. If a round or game is not yet completed and the
+         'New Game/Round' button is pressed, the player is asked to confirm. Likewise, if
+         the 'Exit' button is pressed while a game is in progress, the player will be asked
+         to confirm the selection.</p>
+      <p>During game play, when it is the players turn, the player can select either the
+         'Play' or 'Discard' buttons under each one of their cards. These buttons are not
+         enabled when it is not the players turn or there is no card to play or discard in
+         that spot.</p>
+    </div>
+    <div id="bold"><a id="options">Options</a></div>
+    <div>
+      <p>There are a few options that can be set to customize the game play experience.</p>
+      <ul>
+        <li>Points Needed to Win Game - The total points needed to win the game. Default is
+            5000 points. The range is between 2500 and 50000.
+        <li>Incidental Game Sounds On - If checked (the default), various beeps and other
+            sounds are played during certain events. If not checked, these sounds are not
+            heard.
+        <li>Players Always Starts Round - If checked, the player will always start each new
+            round. If not checked (the default), a random roll determines if the computer or
+            the player will start each round.
+	  </ul>
+    </div>
+    <div id="footertext">
+      &copy; 2014-2021 Slack &amp; Associates / M. G. Slack
+    </div>
+  </body>
+</html>
