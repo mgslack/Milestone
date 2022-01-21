@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 /*
  * Primary class defines a card hand for playing milestone (mille bornes).
@@ -13,21 +10,25 @@ using System.Text;
  *
  * ----------------------------------------------------------------------------
  * 
- * Updated: yyyy-mm-dd -
+ * Updated: 2022-01-21 - Removed unnecessary usings and added regions to code.
  *
  */
 namespace Milestone
 {
     public class MilestoneHand
     {
+        #region Constants
         /* Number of cards in each milestone hand created (max cards). */
         public const int CARDS_IN_MILESTONE_HAND = 7;
+        #endregion
 
+        #region Private vars / public properties
         private MilestoneCards[] cards = new MilestoneCards[CARDS_IN_MILESTONE_HAND];
         private int numCards = 0;
 
         /* Current number of valid cards in the hand (0 - CARDS_IN_MILESTONE_HAND). */
         public int NumCardsInHand { get { return numCards; } }
+        #endregion
 
         // --------------------------------------------------------------------
 
@@ -42,6 +43,7 @@ namespace Milestone
 
         // --------------------------------------------------------------------
 
+        #region Public methods
         /*
          * Method used to add a milestone card to the hand. Needs an empty
          * slot to add the card to. If at max cards, will return a 'false',
@@ -151,5 +153,6 @@ namespace Milestone
 
             return ret;
         }
+        #endregion
     }
 }

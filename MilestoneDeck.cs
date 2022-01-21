@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 
 /*
  * Primary class defines the card deck for playing milestone (mille bornes).
@@ -14,11 +11,12 @@ using System.Text;
  *
  * ----------------------------------------------------------------------------
  * 
- * Updated: yyyy-mm-dd -
+ * Updated: 2022-01-21 - Removed unnecessary usings and added regions to code.
  *
  */
 namespace Milestone
 {
+    #region MS card Enum
     /* Milestone cards that can be gotten from the milestone deck. */
     public enum MilestoneCards { Empty_Card,
                                  Out_Of_Gas, Flat_Tire, Accident, Speed_Limit_50, Stop,
@@ -59,12 +57,16 @@ namespace Milestone
             }
         }
     }
+    #endregion
 
     public class MilestoneDeck
     {
+        #region Constants
         /* Number of cards in the milestone deck. */
         public const int MAX_CARDS_IN_DECK = 106;
+        #endregion
 
+        #region Private vars/public properties
         private MilestoneCards[] _deck = new MilestoneCards[MAX_CARDS_IN_DECK];
         private int nextCard = 0;
         private bool _shuffled = false;
@@ -73,9 +75,11 @@ namespace Milestone
         public bool Shuffled { get { return _shuffled; } }
         /* Number of cards left in the deck. */
         public int CardsLeft { get { return MAX_CARDS_IN_DECK - nextCard; } }
+        #endregion
 
         // --------------------------------------------------------------------
 
+        #region Constructor
         /*
          * Constructor that will create a milestone deck of milestone cards
          * with 106 cards in it.  The deck is created unsorted.
@@ -123,9 +127,11 @@ namespace Milestone
                     _deck[i] = MilestoneCards.Out_Of_Gas;     // 3
             }
         }
+        #endregion
 
         // --------------------------------------------------------------------
 
+        #region Public methods
         /*
          * Method used to shuffle the deck and ready it for use. Calling
          * shuffle resets the deck.
@@ -211,5 +217,6 @@ namespace Milestone
             return "MilestoneDeck: (Number of Cards - 106, CurrentCard - " + nextCard +
                    ", shuffled - " + _shuffled + ")";
         }
+        #endregion
     }
 }

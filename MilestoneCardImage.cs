@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Reflection;
 using System.IO;
 using System.Drawing;
@@ -16,7 +14,7 @@ using System.Windows.Forms;
  *
  * ----------------------------------------------------------------------------
  * 
- * Updated: yyyy-mm-dd - xxxx.                     
+ * Updated: 2022-01-21 - Removed unnecessary usings and added regions to code.                     
  *
  */
 namespace Milestone
@@ -25,6 +23,7 @@ namespace Milestone
 
     public class MilestoneCardImage
     {
+        #region Constants
         /* Width of card images (in pixels). */
         public const int IMAGE_WIDTH = 60;
         /* Height of card images (in pixels). */
@@ -32,8 +31,11 @@ namespace Milestone
 
         private const string IMAGE_NAMESPACE = "Milestone.images.";
         private const string IMAGE_EXT = ".bmp";
+        #endregion
 
+        #region Private vars
         private Dictionary<string, Bitmap> imageCache = new Dictionary<string, Bitmap>();
+        #endregion
 
         // --------------------------------------------------------------------
 
@@ -44,6 +46,7 @@ namespace Milestone
 
         // --------------------------------------------------------------------
 
+        #region Private methods
         private Bitmap LoadImage(int imageNum)
         {
             string imageName = Convert.ToString(imageNum) + IMAGE_EXT;
@@ -62,9 +65,11 @@ namespace Milestone
 
             return bitmap;
         }
+        #endregion
 
         // --------------------------------------------------------------------
 
+        #region Public methods
         /*
          * Method used to get a manifest resource stream of the selected
          * resource represented by the resource path.
@@ -95,5 +100,6 @@ namespace Milestone
         {
             return LoadImage((int) back);
         }
+        #endregion
     }
 }

@@ -6,6 +6,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Media;
 using GameStatistics;
+using CustomMessageBox;
 
 /*
  * Primary class defines the partial class of the main window for the
@@ -17,7 +18,7 @@ using GameStatistics;
  *
  * Author:  M. G. Slack
  * Written: 2014-02-11
- * Version: 1.0.6.0
+ * Version: 1.1.0.0
  *
  * ----------------------------------------------------------------------------
  * 
@@ -33,6 +34,8 @@ using GameStatistics;
  *          2021-03-08 - Removed unnecessary using's.
  *          2021-11-05 - Changed the couple of custom SoundPlayer's to use
  *                       .PlaySync() instead of .Play().
+ *          2022-01-21 - Modified to use custom messagebox to better control
+ *                       sounds when displaying message dialogs.
  */
 namespace Milestone
 {
@@ -180,7 +183,7 @@ namespace Milestone
                 _mileageSoundLoaded = true;
             }
             catch (Exception e) {
-                MessageBox.Show("Wav (" + path + "): " + e.Message, LS_ERR_TITLE);
+                MsgBox.Show("Wav (" + path + "): " + e.Message, LS_ERR_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mileageSound = null;
                 _mileageSoundLoaded = false;
             }
@@ -195,7 +198,7 @@ namespace Milestone
                 _tadaSoundLoaded = true;
             }
             catch (Exception e) {
-                MessageBox.Show("Wav (" + path + "): " + e.Message, LS_ERR_TITLE);
+                MsgBox.Show("Wav (" + path + "): " + e.Message, LS_ERR_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tadaSound = null;
                 _tadaSoundLoaded = false;
             }
@@ -431,8 +434,8 @@ namespace Milestone
             bool canPlay = engine.PlayerCanPlayCard(card, ref onOppo, ref safe, ref coup, ref msg);
 
             if (!canPlay) {
-                if (soundsOn) SystemSounds.Asterisk.Play();
-                MessageBox.Show(msg, this.Text, MessageBoxButtons.OK);
+                MessageBoxIcon snd = (soundsOn) ? MessageBoxIcon.Information : MessageBoxIcon.None;
+                MsgBox.Show(this, msg, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information, snd);
             }
 
             return canPlay;
@@ -480,8 +483,9 @@ namespace Milestone
                 compScore = engine.GetScore(Players.Computer);
                 humScore = engine.GetScore(Players.Human);
                 if ((compScore.GrandTotal < GameWinPoints) && (humScore.GrandTotal < GameWinPoints)) {
-                    MessageBoxIcon icon = (soundsOn) ? MessageBoxIcon.Question : MessageBoxIcon.None;
-                    ret = MessageBox.Show(GAME_NOT_OVER, this.Text, MessageBoxButtons.YesNo, icon);
+                    MessageBoxIcon snd = (soundsOn) ? MessageBoxIcon.Question : MessageBoxIcon.None;
+                    ret = MsgBox.Show(this, GAME_NOT_OVER, this.Text, MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question, snd);
                 }
             }
             e.Cancel = (ret != DialogResult.Yes);
@@ -502,8 +506,9 @@ namespace Milestone
             DialogResult ret = DialogResult.Yes;
 
             if ((gameStarted) && (!roundOver)) {
-                MessageBoxIcon icon = (soundsOn) ? MessageBoxIcon.Question : MessageBoxIcon.None;
-                ret = MessageBox.Show(ROUND_NOT_OVER, this.Text, MessageBoxButtons.YesNo, icon);
+                MessageBoxIcon snd = (soundsOn) ? MessageBoxIcon.Question : MessageBoxIcon.None;
+                ret = MsgBox.Show(this, ROUND_NOT_OVER, this.Text, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, snd);
                 if (ret == DialogResult.Yes) {
                     RoundCounter--;
                     for (int i = 0; i < MilestoneEngine.MAX_PLAYERS; i++)
@@ -514,11 +519,11 @@ namespace Milestone
                 if (!gameStarted) stats.StartGame(true);
                 StartRound();
                 if ((playerAlwaysStarts) || (SingleRandom.Instance.Next(100) >= 50)) {
-                    MessageBox.Show(PLAYER_STARTS, this.Text, MessageBoxButtons.OK);
+                    MsgBox.Show(this, PLAYER_STARTS, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DoEvent(HumsPlay);
                 }
                 else {
-                    MessageBox.Show(COMP_STARTS, this.Text, MessageBoxButtons.OK);
+                    MsgBox.Show(this, COMP_STARTS, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DoEvent(CompsPlay);
                 }
             }
@@ -557,8 +562,9 @@ namespace Milestone
                 Process.Start(htmlPath);
             }
             catch (Exception ex) {
-                MessageBox.Show("Cannot load help: " + ex.Message, "Help Load Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxIcon snd = (soundsOn) ? MessageBoxIcon.Error : MessageBoxIcon.None;
+                MsgBox.Show(this, "Cannot load help: " + ex.Message, "Help Load Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error, snd);
             }
         }
 
@@ -576,7 +582,7 @@ namespace Milestone
                 if (coupFourre) {
                     ShowPlayersCards(); // undisplay safety played from players hand before dialog shown
                     if (soundsOn) PlayTadaSound();
-                    MessageBox.Show(COUP_FOURRE, this.Text, MessageBoxButtons.OK);
+                    MsgBox.Show(this, COUP_FOURRE, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 FinishPlayerTurn();
             }
@@ -628,7 +634,7 @@ namespace Milestone
                 msg += Environment.NewLine + COUP_FOURRE;
                 if (soundsOn) PlayTadaSound();
             }
-            MessageBox.Show(msg, this.Text, MessageBoxButtons.OK);
+            MsgBox.Show(this, msg, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             if (!RoundOrGameOver()) {
                 GetNextCard(hands[(int) Players.Computer]);
