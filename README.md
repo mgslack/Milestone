@@ -12,4 +12,4 @@ with the C# port to finally remove all of the GOTOs from the "pick card to play"
 Game is dependent on the GameStatistics and CustomMessageBox libraries and are needed if
 re-compiling or builing the code.
 
-Last updated and comppiled using VS 2019.
+Last updated and compiled using VS 2019.
